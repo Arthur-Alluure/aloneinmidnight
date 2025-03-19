@@ -139,7 +139,6 @@ class Enemy(Entity):
             self.health = 0
             self.alive = False
             self.death_time = time.time()  # Marca o tempo que morreu
-            print("Inimigo morreu!")
 
             for bg in backgrounds:
                 bg.speed = ENTITY_SPEED[bg.name] * 0.8  # Background voltando a se mover apos matar inimigo

@@ -36,8 +36,8 @@ class Level:
 
     def run(self):
 
-        #pygame.mixer_music.load(f'./asset/Level.mp3')
-        #pygame.mixer_music.play(-1)
+        pygame.mixer_music.load(f'./asset/Level.mp3')
+        pygame.mixer_music.play(-1)
 
         clock = pygame.time.Clock()  # Garantir que o fps seja constante
 
@@ -74,7 +74,7 @@ class Level:
             if not self.player.alive: #se meu player morrer retorna o level como false
                 return False
 
-            if  self.enemies_killed == 1: #Se o Player matar 10 inimigos ele ganha o level
+            if  self.enemies_killed == 10: #Se o Player matar 10 inimigos ele ganha o level
                 return True
 
             self.level_text(25, f'Player 1 - Health: {self.player.health}', C_RED, (10, 25))

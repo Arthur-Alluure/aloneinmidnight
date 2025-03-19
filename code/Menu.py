@@ -19,8 +19,8 @@ class Menu:
 
     def run(self):
 
-        #pygame.mixer_music.load('./asset/Menu.mp3')  # carregando a musica
-        #pygame.mixer_music.play(-1)  # tocando com -1 para deixar infinito
+        pygame.mixer_music.load('./asset/Menu.mp3')  # carregando a musica
+        pygame.mixer_music.play(-1)  # tocando com -1 para deixar infinito
 
 
         while True:
@@ -76,6 +76,12 @@ class Menu:
                 from code.Game import Game
                 game = Game()
                 game.screen_victory()
+
+
+        if MENU_OPTION[self.opcao_atual] == 'TUTORIAL':
+            from code.Game import Game
+            game = Game()
+            game.screen_tutorial()
 
 
         elif MENU_OPTION[self.opcao_atual] == 'SAIR':

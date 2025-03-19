@@ -15,11 +15,13 @@ class Game:
         self.imagem = pygame.image.load('./asset/BackgroundGameOver.png').convert_alpha()  # carrega a imagem
         self.dimensaoImagem = self.imagem.get_rect(left=0, top=0)  # seta o retangulo para ele
 
-        self.imagemVitoria = pygame.image.load('./asset/BackgroundWin.png').convert_alpha()  # carrega a imagem
-        self.dimensaoImagemVitoria = self.imagem.get_rect(left=0, top=0)  # seta o retangulo para ele
+        self.imagemVitoria = pygame.image.load('./asset/BackgroundWin.png').convert_alpha()
+        self.dimensaoImagemVitoria = self.imagem.get_rect(left=0, top=0)
+
+        self.imagemTutorial = pygame.image.load('./asset/BackgroundGameOver.png').convert_alpha()
+        self.dimensaoImagemTutorial = self.imagem.get_rect(left=0, top=0)
 
     def run(self):
-        # Aqui, podemos instanciar o Menu apenas quando necessário
         from code.Menu import Menu  # Importação local para evitar a importação circular
         menu = Menu(self.janela)
         menu.run()
@@ -28,8 +30,12 @@ class Game:
     def screen_game_over(self):
         self.janela.blit(source=self.imagem, dest=self.dimensaoImagem)  # Atribui a imagem para a janela
         self.menu_text(50, "Game Over", C_RED, ((WIN_WIDTH / 2), 60))  # Textos do menu
+        self.menu_text(25, "A Floresta foi dominada pelos Lobisomens", C_RED, ((WIN_WIDTH / 2), 100))
 
         self.menu_text(25, "Pressione Enter para Voltar ao Menu", C_RED, ((WIN_WIDTH / 2), 150))
+
+        pygame.mixer_music.load('./asset/Menu.mp3')
+        pygame.mixer_music.play(-1)
 
         pygame.display.flip()  # Atualiza a tela para mostrar as mudanças
 
@@ -47,6 +53,10 @@ class Game:
                         waiting_for_input = False  # Sai do loop e volta ao menu
 
     def screen_victory(self):
+
+        pygame.mixer_music.load('./asset/Menu.mp3')
+        pygame.mixer_music.play(-1)
+
         self.janela.blit(source=self.imagemVitoria, dest=self.dimensaoImagemVitoria)  # Atribui a imagem para a janela
         self.menu_text(50, "VOCÊ VENCEU!!", C_WHITE, ((WIN_WIDTH / 2), 60))  # Textos do menu
 
@@ -69,6 +79,43 @@ class Game:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:  # Só sai do loop quando Enter é pressionado
                         waiting_for_input = False  # Sai do loop e volta ao menu
+
+
+    def screen_tutorial(self):
+
+        self.janela.blit(source=self.imagemTutorial, dest=self.dimensaoImagemTutorial)  # Atribui a imagem para a janela
+        self.menu_text(50, "Aprenda a jogar:", C_RED, ((WIN_WIDTH / 2), 60))  # Textos do menu
+
+        self.menu_text(25, "Aperte X para Atacar", C_RED, ((WIN_WIDTH / 2), 130))
+        self.menu_text(25, "Controle o Personagem usando as setas direcionais do teclado", C_RED, ((WIN_WIDTH / 2), 150))
+
+        self.menu_text(25, "Seu objetivo é pacificar uma antiga floresta", C_RED,
+                       ((WIN_WIDTH / 2), 190))
+
+        self.menu_text(25, "Mate 10 Lobisomens para Vencer!!", C_RED,
+                       ((WIN_WIDTH / 2), 210))
+
+
+        self.menu_text(20, "Pressione Enter para voltar ao menu!", C_RED, ((WIN_WIDTH / 2), 250))
+
+
+
+
+        pygame.display.flip()  # Atualiza a tela para mostrar as mudanças
+
+        # Espera o jogador pressionar Enter para voltar ao menu
+        waiting_for_input = True
+
+        while waiting_for_input:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:  # Habilitando a possibilidade de fechar o programa
+                    pygame.quit()
+                    quit()
+
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_RETURN:  # Só sai do loop quando Enter é pressionado
+                        waiting_for_input = False  # Sai do loop e volta ao menu
+
 
 
 

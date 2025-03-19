@@ -137,7 +137,6 @@ class Player(Entity):
         if self.health <= 0:
             self.health = 0
             self.alive = False
-            print("Player morreu!")
 
 
 

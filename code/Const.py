@@ -35,26 +35,8 @@ GAME_HEALTH = {
 
 #M
 MENU_OPTION = ('NOVO JOGO',
+               'TUTORIAL',
                'SAIR')
-
-
-
-#P
-PLAYER_KEY_UP = {
-    'Player1': pygame.K_w,
-}
-
-PLAYER_KEY_DOWN = {
-    'Player1': pygame.K_s,
-}
-
-PLAYER_KEY_LEFT = {
-    'Player1': pygame.K_a,
-}
-
-PLAYER_KEY_RIGHT = {
-    'Player1': pygame.K_d,
-}
 
 
 
